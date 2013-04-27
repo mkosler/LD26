@@ -1,6 +1,10 @@
 function love.load()
+  love.graphics.setBackgroundColor(139, 149, 109)
+
   local Bump = require 'lib.bump'
   local GS = require 'lib.gamestate'
+
+  local Play = require 'src.states.play'
 
   Bump.collision = function (o1, o2, dx, dy)
   end
@@ -14,6 +18,7 @@ function love.load()
   end
 
   GS.registerEvents()
+  GS.switch(Play)
 end
 
 function love.keypressed(k, c)
