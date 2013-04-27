@@ -5,3 +5,5 @@ local Entity = Class{}
 function Entity:init()
   Manager.add(self)
 end
+
+return Entity

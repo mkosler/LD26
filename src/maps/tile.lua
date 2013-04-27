@@ -1,70 +1,67 @@
 local Class = require 'lib.class'
 local DEFAULTS = require 'init'
+local Bump = require 'lib.bump'
 
-local EmptyTile = Class{}
+local Tile = Class{}
+function Tile:init(x, y)
+  self.x = x
+  self.y = y
+  self.width = DEFAULTS.TILES.WIDTH
+  self.height = DEFAULTS.TILES.HEIGHT
+
+  Bump.add(self)
+end
+
+function Tile:getBBox()
+  return self.x, self.y, self.width, self.height
+end
+
+local EmptyTile = Class{ __includes = Tile }
 function EmptyTile:init(x, y)
+  Tile.init(self, x, y)
+
   self.id = 0
-
-  self.x = x
-  self.y = y
-
-  self.width = DEFAULTS.TILES.WIDTH
-  self.height = DEFAULTS.TILES.HEIGHT
+  self.name = 'EMPTY'
 end
 
-local UpTile = Class{}
+local UpTile = Class{ __includes = Tile }
 function UpTile:init(x, y)
+  Tile.init(self, x, y)
+
   self.id = 1
-
-  self.x = x
-  self.y = y
-
-  self.width = DEFAULTS.TILES.WIDTH
-  self.height = DEFAULTS.TILES.HEIGHT
+  self.name = 'UP'
 end
 
-local LeftTile = Class{}
+local LeftTile = Class{ __includes = Tile }
 function LeftTile:init(x, y)
+  Tile.init(self, x, y)
+
   self.id = 2
-
-  self.x = x
-  self.y = y
-
-  self.width = DEFAULTS.TILES.WIDTH
-  self.height = DEFAULTS.TILES.HEIGHT
+  self.name = 'LEFT'
 end
 
-local DownTile = Class{}
+local DownTile = Class{ __includes = Tile }
 function DownTile:init(x, y)
+  Tile.init(self, x, y)
+
   self.id = 3
-
-  self.x = x
-  self.y = y
-
-  self.width = DEFAULTS.TILES.WIDTH
-  self.height = DEFAULTS.TILES.HEIGHT
+  self.name = 'DOWN'
 end
 
-local RightTile = Class{}
+local RightTile = Class{ __includes = Tile }
 function RightTile:init(x, y)
+  Tile.init(self, x, y)
+
   self.id = 4
-
-  self.x = x
-  self.y = y
-
-  self.width = DEFAULTS.TILES.WIDTH
-  self.height = DEFAULTS.TILES.HEIGHT
+  self.name = 'RIGHT'
 end
 
-local SpaceTile = Class{}
+local SpaceTile = Class{ __includes = Tile }
 function SpaceTile:init(x, y)
+  Tile.init(self, x, y)
+
   self.id = 5
-
-  self.x = x
-  self.y = y
-
-  self.width = DEFAULTS.TILES.WIDTH
-  self.height = DEFAULTS.TILES.HEIGHT
+  self.name = 'SPACE'
 end
 
 local function factory(tn, x, y)
